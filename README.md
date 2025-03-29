@@ -1,2 +1,3 @@
-# Foodyne React App
-Demo ready for Vercel deploy.
+# Foodyne v1.5
+
+Initial MVP for in-restaurant ordering.
