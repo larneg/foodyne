@@ -1,6 +1,5 @@
-
 {
-  "name": "foodyne-v1-6",
+  "name": "foodyne-v1.7",
   "version": "1.0.0",
   "private": true,
   "dependencies": {

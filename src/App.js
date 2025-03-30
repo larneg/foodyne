@@ -1,76 +1,78 @@
+// Foodyne v1.7 – React Frontend (Demo)
 
 import React, { useState } from "react";
-import "./App.css";
+import "./index.css";
 
-const menuData = {
-  Burgers: [
-    { name: "Washington Burger", price: 14.9 },
-    { name: "Tehran Burger", price: 14.9 },
-    { name: "Godfather Burger", price: 18.0 }
-  ],
-  Extras: [
-    { name: "Crispy Chicken", price: 4.0 },
-    { name: "Avocado", price: 1.9 }
-  ],
-  Sides: [
-    { name: "Curly Fries", price: 4.9 },
-    { name: "Caesar Salad", price: 4.9 }
-  ]
-};
+const menuItems = [
+  {
+    id: 1,
+    name: "Washington Burger",
+    price: 14.9,
+  },
+  {
+    id: 2,
+    name: "Cheeseburger",
+    price: 12.8,
+  },
+  {
+    id: 3,
+    name: "Peking Burger",
+    price: 14.9,
+  },
+];
 
 function App() {
   const [cart, setCart] = useState([]);
-  const [note, setNote] = useState("");
-  const [openSection, setOpenSection] = useState("Burgers");
 
-  const addItem = (item) => {
-    setCart([...cart, item]);
+  const addToCart = (item) => {
+    setCart([...cart, { ...item, note: "" }]);
   };
 
-  const removeItem = (index) => {
+  const updateNote = (index, note) => {
     const updatedCart = [...cart];
-    updatedCart.splice(index, 1);
+    updatedCart[index].note = note;
     setCart(updatedCart);
   };
 
-  const total = cart.reduce((sum, item) => sum + item.price, 0).toFixed(2);
-
   return (
-    <div className="app">
-      <h1>🍽️ Foodyne Ordering</h1>
-      {Object.entries(menuData).map(([category, items]) => (
-        <div className="accordion" key={category}>
-          <div className="accordion-header" onClick={() => setOpenSection(category)}>
-            <h2>{category}</h2>
-          </div>
-          {openSection === category && (
-            <div className="accordion-body">
-              {items.map((item, idx) => (
-                <div className="menu-item" key={idx}>
-                  {item.name} – €{item.price.toFixed(2)}{" "}
-                  <button className="add-btn" onClick={() => addItem(item)}>Add</button>
-                </div>
-              ))}
+    <div className="min-h-screen p-4 bg-gray-50">
+      <h1 className="text-2xl font-bold mb-4">🍔 Foodyne v1.7 - سفارش‌گیری + یادداشت غذا</h1>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <h2 className="text-xl font-semibold mb-2">منو</h2>
+          {menuItems.map((item) => (
+            <div key={item.id} className="p-3 bg-white rounded shadow flex justify-between items-center mb-2">
+              <span>{item.name} – €{item.price.toFixed(2)}</span>
+              <button
+                className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded"
+                onClick={() => addToCart(item)}
+              >
+                افزودن
+              </button>
             </div>
-          )}
+          ))}
         </div>
-      ))}
 
-      <div className="note-section">
-        <h3>📝 Optional Note</h3>
-        <textarea value={note} onChange={(e) => setNote(e.target.value)} />
-      </div>
-
-      <div className="cart-section">
-        <h3>🛒 Cart</h3>
-        {cart.map((item, idx) => (
-          <div className="cart-item" key={idx}>
-            {item.name} – €{item.price.toFixed(2)}
-            <button className="remove-btn" onClick={() => removeItem(idx)}>❌</button>
-          </div>
-        ))}
-        <h4>Total: €{total}</h4>
-        <button className="submit-btn">✅ Submit Order</button>
+        <div>
+          <h2 className="text-xl font-semibold mb-2">🛒 سبد سفارش</h2>
+          {cart.length === 0 && <p>سبد شما خالی است.</p>}
+          {cart.map((item, index) => (
+            <div key={index} className="p-3 bg-white rounded shadow mb-3">
+              <div className="flex justify-between">
+                <strong>{item.name}</strong>
+                <span>€{item.price.toFixed(2)}</span>
+              </div>
+              <textarea
+                className="mt-2 w-full border rounded p-2 text-sm"
+                rows="2"
+                placeholder="یادداشت برای این غذا..."
+                value={item.note}
+                onChange={(e) => updateNote(index, e.target.value)}
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
