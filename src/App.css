@@ -1,27 +1,23 @@
 
-.container {
+.App {
   font-family: sans-serif;
   padding: 20px;
-  max-width: 600px;
-  margin: auto;
 }
-.menu-item {
+
+.menu-item, .cart-item {
   display: flex;
   justify-content: space-between;
   margin: 10px 0;
 }
-.cart li {
-  display: flex;
-  justify-content: space-between;
-}
+
 button {
-  background: green;
+  background-color: green;
   color: white;
   border: none;
   padding: 5px 10px;
   cursor: pointer;
 }
-.total {
-  font-weight: bold;
-  margin-top: 10px;
+
+button:hover {
+  background-color: darkgreen;
 }
