@@ -1,0 +1,19 @@
+
+body {
+  direction: ltr;
+  font-family: sans-serif;
+}
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  border-bottom: 1px solid #eee;
+}
+.menu-item .title {
+  flex: 1;
+  text-align: left;
+}
+.menu-item .add-btn {
+  margin-left: 10px;
+}
