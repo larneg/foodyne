@@ -1,1 +1,0 @@
-console.log('Foodyne v2.1 Loaded');
