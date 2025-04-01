@@ -1,12 +1,13 @@
-
 import React from "react";
+import "./App.css";
 
-export default function App() {
+function App() {
   return (
-    <div style={{ fontFamily: "sans-serif", padding: "2rem" }}>
-      <h1>🍔 Welcome to Foodyne!</h1>
-      <p>This is the production-ready demo landing page.</p>
-      <p>You're seeing this because your React app is working perfectly! 🎉</p>
+    <div className="App">
+      <h1>🍔 Foodyne</h1>
+      <p>سفارش خود را شروع کنید...</p>
     </div>
   );
 }
+
+export default App;
